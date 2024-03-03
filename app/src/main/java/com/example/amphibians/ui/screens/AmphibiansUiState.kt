@@ -1,5 +1,8 @@
 package com.example.amphibians.ui.screens
 
+import android.net.http.HttpException
+import android.os.Build
+import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -12,7 +15,6 @@ import com.example.amphibians.AmphibiansApplication
 import com.example.amphibians.data.AmphibiansRepository
 import com.example.amphibians.model.Amphibian
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 import java.io.IOException
 
 /**
@@ -27,6 +29,7 @@ sealed interface AmphibiansUiState {
 /**
  * ViewModel containing the app data and method to retrieve the data
  */
+@RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 class AmphibiansViewModel(private val amphibiansRepository: AmphibiansRepository) : ViewModel() {
 
     var amphibiansUiState: AmphibiansUiState by mutableStateOf(AmphibiansUiState.Loading)
@@ -36,6 +39,7 @@ class AmphibiansViewModel(private val amphibiansRepository: AmphibiansRepository
         getAmphibians()
     }
 
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     fun getAmphibians() {
         viewModelScope.launch {
             amphibiansUiState = AmphibiansUiState.Loading

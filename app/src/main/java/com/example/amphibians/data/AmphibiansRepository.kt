@@ -1,5 +1,6 @@
 package com.example.amphibians.data
 
+import com.example.amphibians.model.Amphibian
 import com.example.amphibians.network.AmphibiansApiService
 
 /**
